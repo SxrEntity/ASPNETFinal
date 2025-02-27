@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace SportsPro.Controllers
+namespace SportsPro._Controllers
 {
     public class RegistrationController : Controller
     {
