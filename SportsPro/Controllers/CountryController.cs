@@ -59,6 +59,7 @@ namespace SportsPro
             {
                 _context.Add(country);
                 await _context.SaveChangesAsync();
+                TempData["message"] = country.Name + " was created.";
                 return RedirectToAction(nameof(Index));
             }
             return View(country);
@@ -110,6 +111,7 @@ namespace SportsPro
                         throw;
                     }
                 }
+                TempData["message"] = country.Name + " was edited.";
                 return RedirectToAction(nameof(Index));
             }
             return View(country);
@@ -141,6 +143,7 @@ namespace SportsPro
             var country = await _context.Countries.FindAsync(id);
             if (country != null)
             {
+                TempData["message"] = country.Name + " was deleted.";
                 _context.Countries.Remove(country);
             }
 

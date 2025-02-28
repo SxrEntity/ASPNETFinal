@@ -64,6 +64,7 @@ namespace SportsPro._Controllers
             {
                 _context.Add(customer);
                 await _context.SaveChangesAsync();
+                TempData["message"] = customer.FullName + " was created.";
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CountryID"] = new SelectList(_context.Countries, "CountryID", "CountryID", customer.CountryID);
@@ -94,6 +95,7 @@ namespace SportsPro._Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("CustomerID,FirstName,LastName,Address,City,State,PostalCode,Phone,Email,CountryID")] Customer customer)
         {
+            ModelState.Remove("Country");
             if (id != customer.CustomerID)
             {
                 return NotFound();
@@ -117,6 +119,7 @@ namespace SportsPro._Controllers
                         throw;
                     }
                 }
+                TempData["message"] = customer.FullName + " was edited.";
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CountryID"] = new SelectList(_context.Countries, "CountryID", "CountryID", customer.CountryID);
@@ -150,6 +153,7 @@ namespace SportsPro._Controllers
             var customer = await _context.Customers.FindAsync(id);
             if (customer != null)
             {
+                TempData["message"] = customer.FullName + " was deleted.";
                 _context.Customers.Remove(customer);
             }
 

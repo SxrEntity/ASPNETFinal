@@ -60,6 +60,7 @@ namespace SportsPro._Controllers
             {
                 _context.Add(product);
                 await _context.SaveChangesAsync();
+                TempData["message"] = product.Name + " was created.";
                 return RedirectToAction(nameof(Index));
             }
             return View(product);
@@ -115,6 +116,7 @@ namespace SportsPro._Controllers
                         throw;
                     }
                 }
+                TempData["message"] = product.Name + " was edited.";
                 return RedirectToAction(nameof(Index));
             }
             return View(product);
@@ -146,6 +148,7 @@ namespace SportsPro._Controllers
             var product = await _context.Products.FindAsync(id);
             if (product != null)
             {
+                TempData["message"] = product.Name + " was deleted.";
                 _context.Products.Remove(product);
             }
 
@@ -154,7 +157,6 @@ namespace SportsPro._Controllers
         }
 
         //list 
-        [Route("/Product/all-products/")]
         public async Task<IActionResult> List(){
             var products = await _context.Products.ToListAsync();
             return View(products);

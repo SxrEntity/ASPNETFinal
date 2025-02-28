@@ -21,13 +21,13 @@
                 </button>
                 <nav class="collapse navbar-collapse" id="navbarSupportedContent">
                     <div class="btn-group" role="group">
-                        <a class="btn btn-primary active" asp-controller="Home" asp-action="Index">Home</a>
+                        <a class="btn btn-primary" asp-controller="Home" asp-action="Index">Home</a>
                         <a class="btn btn-primary" asp-controller="Product" asp-action="List">Products</a>
                         <a class="btn btn-primary" asp-controller="Technician" asp-action="List">Technicians</a>
                         <a class="btn btn-primary" asp-controller="Customer" asp-action="List">Customers</a>
                         <a class="btn btn-primary" asp-controller="Incident" asp-action="List">Incidents</a>
-                        <a class="btn btn-primary" asp-controller="Registration" asp-action="Index">Registrations</a>
                         <a class="btn btn-primary" asp-controller="Country" asp-action="List">Countries</a>
+                        <a class="btn btn-primary" asp-controller="Registration" asp-action="Index">Registrations</a>
                     </div>
                     <div class="navbar-nav ms-auto">
                         <a class="nav-item nav-link active" asp-controller="About" asp-action="Index">About</a>
@@ -38,6 +38,9 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
+            @if (TempData.Keys.Contains("message")){
+                <h2 class="bg-info text-white text-center p-2 mt-2 rounded">@TempData["message"]</h2>
+            }
             @RenderBody()
         </main>
     </div>

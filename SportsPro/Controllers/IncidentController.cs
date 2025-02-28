@@ -70,6 +70,7 @@ namespace SportsPro._Controllers
             {
                 _context.Add(incident);
                 await _context.SaveChangesAsync();
+                TempData["message"] = incident.Title + " was created.";
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CustomerID"] = new SelectList(_context.Customers, "CustomerID", "CustomerID", incident.CustomerID);
@@ -104,6 +105,9 @@ namespace SportsPro._Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("IncidentID,Title,Description,DateOpened,DateClosed,CustomerID,ProductID,TechnicianID")] Incident incident)
         {
+            ModelState.Remove("Technician");
+            ModelState.Remove("Product");
+            ModelState.Remove("Customer");
             if (id != incident.IncidentID)
             {
                 return NotFound();
@@ -127,6 +131,7 @@ namespace SportsPro._Controllers
                         throw;
                     }
                 }
+                TempData["message"] = incident.Title + " was edited.";
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CustomerID"] = new SelectList(_context.Customers, "CustomerID", "CustomerID", incident.CustomerID);
@@ -164,6 +169,7 @@ namespace SportsPro._Controllers
             var incident = await _context.Incidents.FindAsync(id);
             if (incident != null)
             {
+                TempData["message"] = incident.Title + " was deleted.";
                 _context.Incidents.Remove(incident);
             }
 
