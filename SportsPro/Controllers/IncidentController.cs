@@ -177,8 +177,8 @@ namespace SportsPro._Controllers
             return RedirectToAction(nameof(Index));
         }
          public async Task<IActionResult> List(){
-            var incidents = await _context.Incidents.ToListAsync();
-            return View(incidents);
+            var sportsProContext = _context.Incidents.Include(i => i.Customer).Include(i => i.Product).Include(i => i.Technician);
+            return View(await sportsProContext.ToListAsync());
         }
 
         private bool IncidentExists(int id)
