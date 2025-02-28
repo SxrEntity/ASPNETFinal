@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRouting(options => {
-    options.LowercaseUrls = true;
+    // options.LowercaseUrls = true;
     options.AppendTrailingSlash = true;
 });
 
