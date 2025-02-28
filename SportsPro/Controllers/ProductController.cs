@@ -43,8 +43,7 @@ namespace SportsPro._Controllers
         }
 
         // GET: Product/Create
-        [HttpGet]
-        [Route("/Product/create-new/")]
+        // [HttpGet]
         public IActionResult Create()
         {
             return View();

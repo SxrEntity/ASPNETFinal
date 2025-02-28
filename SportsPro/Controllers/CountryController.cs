@@ -53,7 +53,7 @@ namespace SportsPro
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CountryID,Name")] CountryController country)
+        public async Task<IActionResult> Create([Bind("CountryID,Name")] Country country)
         {
             if (ModelState.IsValid)
             {
