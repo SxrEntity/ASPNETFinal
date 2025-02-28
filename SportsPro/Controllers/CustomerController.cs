@@ -58,6 +58,8 @@ namespace SportsPro._Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CustomerID,FirstName,LastName,Address,City,State,PostalCode,Phone,Email,CountryID")] Customer customer)
         {
+            // Unneeded ModelState entries
+            ModelState.Remove("Country");
             if (ModelState.IsValid)
             {
                 _context.Add(customer);

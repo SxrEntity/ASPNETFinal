@@ -62,6 +62,10 @@ namespace SportsPro._Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("IncidentID,Title,Description,DateOpened,DateClosed,CustomerID,ProductID,TechnicianID")] Incident incident)
         {
+            // Unneeded ModelState entries
+            ModelState.Remove("Technician");
+            ModelState.Remove("Product");
+            ModelState.Remove("Customer");
             if (ModelState.IsValid)
             {
                 _context.Add(incident);
