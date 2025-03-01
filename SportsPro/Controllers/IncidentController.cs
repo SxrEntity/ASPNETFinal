@@ -185,5 +185,15 @@ namespace SportsPro._Controllers
         {
             return _context.Incidents.Any(e => e.IncidentID == id);
         }
+
+        private async Task<IncidentViewModel> GetViewModel(){
+            IncidentViewModel model = new IncidentViewModel{
+                Customers = await _context.Customers.ToListAsync(),
+                Products = await _context.Products.ToListAsync(),
+                Technicians = await _context.Technicians.ToListAsync()
+            };
+
+            return model;
+        }
     }
 }

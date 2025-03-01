@@ -1,0 +1,42 @@
+@model TechIncidentViewModel
+@{
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+
+<h1>Technician: @Model.Technician.Name</h1>
+<h1>Assigned/Open Incidents</h1>
+@if (Model.Incidents.Count() > 0){
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Customer</th>
+                <th>Product</th>
+                <th>Date Opened</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var incident in Model.Incidents){
+                <tr>
+                    <td>@incident.Title</td>
+                    <td>@incident.Customer.FullName</td>
+                    <td>@incident.Product.Name</td>
+                    <td>@incident.DateOpened.ToShortDateString()</td>
+                    <td>
+                        <a asp-action="Edit"
+                            asp-route-itemid="@incident.IncidentID"
+                            class="btn btn-primary">Edit</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else{
+    <p>The selected technician has no open incidents.</p>
+}
+
+<a asp-action="Get" class="btn btn-primary">Switch Technician</a>

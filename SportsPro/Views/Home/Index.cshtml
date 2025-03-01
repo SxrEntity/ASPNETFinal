@@ -16,11 +16,12 @@
     <a asp-controller="Incident" asp-action="List"
        class="list-group-item">Manage Incidents</a>
     <a asp-controller="Registration" asp-action="List"
-       class="list-group-item">Manage Registrations</a>
+       class="list-group-item disabled">Manage Registrations</a>
 </div>
 
 <h1>Technicians</h1>
 <div class="list-group">
-    <a asp-controller="Incident" asp-action="ListByTech"
+   @* Doesnt work *@
+    <a asp-controller="TechIncident" asp-action="List" 
        class="list-group-item">Update Incident</a>
 </div>
